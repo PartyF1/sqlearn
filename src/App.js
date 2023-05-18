@@ -1,15 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import Header from './pages/Header';
+import Task from './pages/TaskPage/Task';
+import Tasks from './pages/Tasks/Tasks';
+import Server from './server';
 
-function App() {
-  const [page, setPage] = useState("main");
+export default function App() {
+  const [page, setPage] = useState("tasks");
+  const [info, setInfo] = useState(null);
+  const server = new Server();
+
   return (
     <div className="App">
-      <Header></Header>
+      {page=="task" ? <Task setPage={setPage} info={info} server={server}></Task> :
+                      <Tasks setPage={setPage} setInfo={setInfo} server={server}></Tasks>}
     </div>
   );
 }
-
-export default App;
