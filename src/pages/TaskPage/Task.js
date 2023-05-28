@@ -8,17 +8,16 @@ export default function Task(props) {
     const { info } = props;
     const { server } = props;
     const query = useRef();
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState("Ваши результаты здесь");
 
     const [code, setCode] = useState("");
 
-    const sendSolution = () => {
+    const sendSolution = async () => {
         try {
-            const a = server.sendSolution(info.taskId, query.current.value);
-            console.log(a);
+            const a = await server.sendSolution(info.taskId, query.current.value);
             setAnswer(a);
         } catch (e) {
-            console.log("насрал ошибку")
+            console.log("Ошибка")
         }
 
     }
@@ -27,7 +26,7 @@ export default function Task(props) {
         <div className="kk">
             <div>
                 <fieldset className="infoText">{info.text}</fieldset>
-                <fieldset className="request">{answer ? answer : "Здесь будет ответ"}</fieldset>
+                <fieldset className="request">{answer}</fieldset>
             </div>
             <fieldset className="solutionArea">
                 <CodeEditor

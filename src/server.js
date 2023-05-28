@@ -15,6 +15,7 @@ export default class Server {
     }
 
     async sendSolution(taskId, solution) {
-        return await this.send({method: "sendSolution", taskId: taskId, solution: solution});
+        const answer = await this.send({method: "sendSolution", taskId: taskId, solution: solution});
+        return answer? answer : "Ошибка";
     } 
 }
