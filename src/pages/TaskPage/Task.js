@@ -4,9 +4,7 @@ import "./Task.scss"
 
 
 export default function Task(props) {
-    const { setPage } = props;
-    const { info } = props;
-    const { server } = props;
+    const { setPage, task, server } = props;
     const query = useRef();
     const [answer, setAnswer] = useState("Ваши результаты здесь");
 
@@ -14,7 +12,7 @@ export default function Task(props) {
 
     const sendSolution = async () => {
         try {
-            const a = await server.sendSolution(info.taskId, query.current.value);
+            const a = await server.sendSolution(task.id, query.current.value);
             setAnswer(a);
         } catch (e) {
             console.log("Ошибка")
@@ -25,7 +23,7 @@ export default function Task(props) {
     return (
         <div className="kk">
             <div>
-                <fieldset className="infoText">{info.text}</fieldset>
+                <fieldset className="infoText">{task.info}</fieldset>
                 <fieldset className="request">{answer}</fieldset>
             </div>
             <fieldset className="solutionArea">

@@ -6,13 +6,13 @@ import Server from './server';
 
 export default function App() {
   const [page, setPage] = useState("tasks");
-  const [info, setInfo] = useState(null);
+  const [task, setTask] = useState(null);
   const server = new Server();
 
   return (
     <div className="App">
-      {page=="task" ? <Task setPage={setPage} info={info} server={server}></Task> :
-                      <Tasks setPage={setPage} setInfo={setInfo} server={server}></Tasks>}
+      {page=="task" ? <Task setPage={setPage} task={task} server={server}></Task> :
+                      <Tasks setPage={setPage} setTask={setTask} server={server}></Tasks>}
     </div>
   );
 }
